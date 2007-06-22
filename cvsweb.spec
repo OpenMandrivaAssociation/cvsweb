@@ -1,17 +1,20 @@
 Summary:	Visual (www) interface to explore a cvs repository
 Name:		cvsweb
 Version:	3.0.6
-Release:	%mkrel 2
+Release:	%mkrel 3
 Epoch:		1
 License:	BSD
 Group:		System/Servers
 URL:		http://www.FreeBSD.org/projects/cvsweb.html
 Source0:	http://people.freebsd.org/~scop/cvsweb/%{name}-%{version}.tar.bz2
-Source1:	%{name}.README.mdk.bz2
+Source1:	%{name}.README.mdv
 Patch:		cvsweb-3.0.5.config.patch
 Requires:	cvs
 Requires:	rcs
 Requires:	apache >= 2.0.54
+Requires(post):   rpm-helper >= 0.16
+Requires(postun): rpm-helper >= 0.16
+BuildRequires:    rpm-helper >= 0.16
 BuildRequires:	ImageMagick
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -29,7 +32,7 @@ cvsweb requires the server to have cvs and a cvs repository worth exploring.
 
 %setup -q
 %patch -p 1 -b .config
-bzcat %{SOURCE1} > README.mdk
+bzcat %{SOURCE1} > README.mdv
 for file in icons/*.gif; do
     convert $file icons/`basename $file gif`png
     rm -f $file
@@ -81,16 +84,10 @@ Alias /cvsweb /var/www/cvsweb
 EOF
 
 %post
-if [ -f /var/lock/subsys/httpd ]; then
-    %{_initrddir}/httpd restart 1>&2;
-fi
+%_post_webapp
 
 %postun
-if [ "$1" = "0" ]; then
-    if [ -f /var/lock/subsys/httpd ]; then
-	%{_initrddir}/httpd restart 1>&2
-    fi
-fi
+%_postun_webapp
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
