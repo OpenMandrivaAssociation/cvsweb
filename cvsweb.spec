@@ -32,7 +32,6 @@ cvsweb requires the server to have cvs and a cvs repository worth exploring.
 
 %setup -q
 %patch -p 1 -b .config
-bzcat %{SOURCE1} > README.mdv
 for file in icons/*.gif; do
     convert $file icons/`basename $file gif`png
     rm -f $file
