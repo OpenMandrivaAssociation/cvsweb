@@ -7,7 +7,7 @@ License:	BSD
 Group:		System/Servers
 URL:		http://www.FreeBSD.org/projects/cvsweb.html
 Source0:	http://people.freebsd.org/~scop/cvsweb/%{name}-%{version}.tar.bz2
-Source1:	%{name}.README.mdv
+Source1:	README.mdv
 Patch:		cvsweb-3.0.5.config.patch
 Requires:	cvs
 Requires:	rcs
