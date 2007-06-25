@@ -93,7 +93,7 @@ EOF
 
 %files
 %defattr(-,root,root)
-%doc ChangeLog INSTALL NEWS README TODO README.mdv cvsweb.conf-*
+%doc ChangeLog INSTALL NEWS README TODO %SOURCE1 cvsweb.conf-*
 %config(noreplace) %{_sysconfdir}/cvsweb.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %{_var}/www/cgi-bin/cvsweb.cgi
