@@ -7,7 +7,6 @@ License:	BSD
 Group:		System/Servers
 URL:		http://www.FreeBSD.org/projects/cvsweb.html
 Source0:	http://people.freebsd.org/~scop/cvsweb/%{name}-%{version}.tar.bz2
-Source1:	README.mdv
 Patch:		cvsweb-3.0.5.config.patch
 Requires:	cvs
 Requires:	rcs
@@ -82,6 +81,24 @@ Alias /cvsweb /var/www/cvsweb
 
 EOF
 
+cat > README.mdv <<EOF
+
+Mandrake RPM specific notes
+
+setup
+-----
+The setup used here differs from default one, to achieve better FHS compliance.
+- the files accessibles from the web are in /var/www/cvsweb
+- the configuration file is /etc/cvsweb.conf
+
+Suggested packages
+------------------
+- enscript for syntax highlighting
+- cvsgraph for cvs graphs
+- cvshistory for cvs history
+
+EOF
+
 %post
 %_post_webapp
 
@@ -93,7 +110,7 @@ EOF
 
 %files
 %defattr(-,root,root)
-%doc ChangeLog INSTALL NEWS README TODO %SOURCE1 cvsweb.conf-*
+%doc ChangeLog INSTALL NEWS README TODO README.mdv cvsweb.conf-*
 %config(noreplace) %{_sysconfdir}/cvsweb.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %{_var}/www/cgi-bin/cvsweb.cgi
