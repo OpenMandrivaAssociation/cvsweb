@@ -83,7 +83,7 @@ EOF
 
 cat > README.mdv <<EOF
 
-Mandrake RPM specific notes
+Mandriva RPM specific notes
 
 setup
 -----
