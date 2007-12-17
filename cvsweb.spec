@@ -16,7 +16,6 @@ Requires(postun): rpm-helper >= 0.16
 BuildRequires:    rpm-helper >= 0.16
 BuildRequires:	ImageMagick
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 cvsweb is a visual (www) interface to explore a cvs repository. This is an
