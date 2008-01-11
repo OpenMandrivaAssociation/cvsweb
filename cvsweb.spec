@@ -1,7 +1,7 @@
 Summary:	Visual (www) interface to explore a cvs repository
 Name:		cvsweb
 Version:	3.0.6
-Release:	%mkrel 3
+Release:	%mkrel 4
 Epoch:		1
 License:	BSD
 Group:		System/Servers
