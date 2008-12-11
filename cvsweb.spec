@@ -14,7 +14,7 @@ Requires:	apache >= 2.0.54
 Requires(post):   rpm-helper >= 0.16
 Requires(postun): rpm-helper >= 0.16
 BuildRequires:    rpm-helper >= 0.16
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
