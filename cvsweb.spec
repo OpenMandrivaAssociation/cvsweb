@@ -1,7 +1,7 @@
 Summary:	Visual (www) interface to explore a cvs repository
 Name:		cvsweb
 Version:	3.0.6
-Release:	%mkrel 7
+Release:	%mkrel 8
 Epoch:		1
 License:	BSD
 Group:		System/Servers
@@ -10,10 +10,11 @@ Source0:	http://people.freebsd.org/~scop/cvsweb/%{name}-%{version}.tar.bz2
 Patch:		cvsweb-3.0.5.config.patch
 Requires:	cvs
 Requires:	rcs
-Requires:	apache >= 2.0.54
-Requires(post):   rpm-helper >= 0.16
-Requires(postun): rpm-helper >= 0.16
-BuildRequires:    rpm-helper >= 0.16
+Requires:	webserver
+%if %mdkversion < 201010
+Requires(post):   rpm-helper
+Requires(postun):   rpm-helper
+%endif
 BuildRequires:	imagemagick
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -100,13 +101,17 @@ Suggested packages
 EOF
 
 %post
+%if %mdkversion < 201010
 %_post_webapp
+%endif
 
 %postun
+%if %mdkversion < 201010
 %_postun_webapp
+%endif
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
