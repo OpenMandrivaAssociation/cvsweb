@@ -29,7 +29,7 @@ cvsweb requires the server to have cvs and a cvs repository worth exploring.
 
 %prep
 %setup -q
-%patch0 -p 1 -b .config
+%patch0 -p 1 -b .config~
 for file in icons/*.gif; do
     convert $file icons/`basename $file gif`png
     rm -f $file
