@@ -11,7 +11,7 @@ Patch0:		cvsweb-3.0.5.config.patch
 Requires:	cvs
 Requires:	rcs
 Requires:	webserver
-%if %mdkversion < 201010
+%if %{mdkversion} < 201010
 Requires(post):	rpm-helper
 Requires(postun):rpm-helper
 %endif
@@ -96,13 +96,11 @@ Suggested packages
 
 EOF
 
+%if %{mdkversion} < 201010
 %post
-%if %mdkversion < 201010
 %_post_webapp
-%endif
 
 %postun
-%if %mdkversion < 201010
 %_postun_webapp
 %endif
 
