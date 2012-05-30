@@ -7,7 +7,7 @@ License:	BSD
 Group:		System/Servers
 URL:		http://www.FreeBSD.org/projects/cvsweb.html
 Source0:	http://people.freebsd.org/~scop/cvsweb/%{name}-%{version}.tar.bz2
-Patch:		cvsweb-3.0.5.config.patch
+Patch0:		cvsweb-3.0.5.config.patch
 Requires:	cvs
 Requires:	rcs
 Requires:	webserver
@@ -29,9 +29,8 @@ from view. One living example of the enhanced cvsweb is the KDE cvsweb
 cvsweb requires the server to have cvs and a cvs repository worth exploring.
 
 %prep
-
 %setup -q
-%patch -p 1 -b .config
+%patch0 -p 1 -b .config
 for file in icons/*.gif; do
     convert $file icons/`basename $file gif`png
     rm -f $file
