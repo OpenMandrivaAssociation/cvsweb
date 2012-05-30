@@ -105,7 +105,6 @@ EOF
 %endif
 
 %files
-%defattr(-,root,root)
 %doc ChangeLog INSTALL NEWS README TODO README.mdv cvsweb.conf-*
 %config(noreplace) %{_sysconfdir}/cvsweb.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
