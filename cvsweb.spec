@@ -1,7 +1,7 @@
 Summary:	Visual (www) interface to explore a cvs repository
 Name:		cvsweb
 Version:	3.0.6
-Release:	%mkrel 9
+Release:	10
 Epoch:		1
 License:	BSD
 Group:		System/Servers
@@ -12,12 +12,11 @@ Requires:	cvs
 Requires:	rcs
 Requires:	webserver
 %if %mdkversion < 201010
-Requires(post):   rpm-helper
-Requires(postun):   rpm-helper
+Requires(post):	rpm-helper
+Requires(postun):rpm-helper
 %endif
 BuildRequires:	imagemagick
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 cvsweb is a visual (www) interface to explore a cvs repository. This is an
@@ -39,8 +38,6 @@ done
 %build
 
 %install
-rm -rf %{buildroot}
-
 install -d -m 755 %{buildroot}%{_var}/www/cgi-bin
 install -d -m 755 %{buildroot}%{_var}/www/%{name}
 install -d -m 755 %{buildroot}%{_sysconfdir}
@@ -109,9 +106,6 @@ EOF
 %_postun_webapp
 %endif
 
-%clean
-rm -rf %{buildroot}
-
 %files
 %defattr(-,root,root)
 %doc ChangeLog INSTALL NEWS README TODO README.mdv cvsweb.conf-*
@@ -120,5 +114,3 @@ rm -rf %{buildroot}
 %{_var}/www/cgi-bin/cvsweb.cgi
 %{_var}/www/%{name}
 %{_datadir}/enscript/hl/*
-
-
