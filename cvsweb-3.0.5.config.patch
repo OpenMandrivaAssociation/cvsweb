@@ -1,0 +1,76 @@
+diff -Naur cvsweb-3.0.5/cvsweb.cgi cvsweb-3.0.5.config/cvsweb.cgi
+--- cvsweb-3.0.5/cvsweb.cgi	2005-01-22 13:43:55.000000000 +0100
++++ cvsweb-3.0.5.config/cvsweb.cgi	2005-06-21 12:08:03.000000000 +0200
+@@ -208,22 +208,7 @@
+ # (think mod_perl)...
+ delete(@ENV{qw(PATH IFS CDPATH ENV BASH_ENV)});
+ 
+-my ($mydir) = (dirname($0) =~ /(.*)/);    # untaint
+-
+-##### Start of Configuration Area ########
+-
+-# == EDIT this ==
+-# Locations to search for user configuration, in order:
+-for (catfile($mydir, 'cvsweb.conf'), '/usr/local/etc/cvsweb/cvsweb.conf') {
+-  if (-r $_) {
+-    $config = $_;
+-    last;
+-  }
+-}
+-
+-##### End of Configuration Area   ########
+-
+-undef $mydir;
++$config = '/etc/cvsweb.conf';
+ 
+ ######## Configuration parameters #########
+ 
+diff -Naur cvsweb-3.0.5/cvsweb.conf cvsweb-3.0.5.config/cvsweb.conf
+--- cvsweb-3.0.5/cvsweb.conf	2005-01-08 20:38:57.000000000 +0100
++++ cvsweb-3.0.5.config/cvsweb.conf	2005-06-22 16:20:35.328629677 +0200
+@@ -57,7 +57,7 @@
+ # 'symbolic_name' => ['Name to display',  '/path/to/cvsroot']
+ #
+ @CVSrepositories = (
+-        'local'   => ['Local Repository', '/var/cvs'],
++        'local'   => ['Local Repository', '/var/lib/cvs'],
+ #       'freebsd' => ['FreeBSD',          '/var/ncvs'],
+ #       'openbsd' => ['OpenBSD',          '/var/ncvs'],
+ #       'netbsd'  => ['NetBSD',           '/var/ncvs'],
+@@ -226,21 +226,21 @@
+ # check out the "mini" versions in the icons/ directory; they have a
+ # width/height of 16/16.
+ #
+-my $iconsdir = '/icons';
++my $iconsdir = '/cvsweb';
+ 
+ # format:          TEXT       ICON-URL                  width height
+ %ICONS = (
+-     back    => [('[BACK]',   "$iconsdir/back.gif",      20,   22)],
+-     dir     => [('[DIR]',    "$iconsdir/dir.gif",       20,   22)],
+-     file    => [('[TXT]',    "$iconsdir/text.gif",      20,   22)],
+-     binfile => [('[BIN]',    "$iconsdir/binary.gif",    20,   22)],
++     back    => [('[BACK]',   "$iconsdir/back.png",      20,   22)],
++     dir     => [('[DIR]',    "$iconsdir/dir.png",       20,   22)],
++     file    => [('[TXT]',    "$iconsdir/text.png",      20,   22)],
++     binfile => [('[BIN]',    "$iconsdir/binary.png",    20,   22)],
+      graph   => [('[GRAPH]',  "$iconsdir/minigraph.png", 16,   16)],
+ );
+ undef $iconsdir;
+ 
+ # An URL where to find the CSS.
+ #
+-$cssurl = '/css/cvsweb.css';
++$cssurl = '/cvsweb/cvsweb.css';
+ 
+ # The length to which the last log entry should be truncated when shown
+ # in the directory view.
+@@ -368,7 +368,7 @@
+ # The traditional mime.types file, eg. the one from Apache is fine.
+ # See above where this gets used.
+ #
+-$mime_types = '/usr/local/etc/apache/mime.types';
++$mime_types = '/etc/httpd/conf/mime.types';
+ 
+ # Charset appended to the Content-Type HTTP header for text/* MIME types.
+ # Note that the web server may default to some charset which may take effect
