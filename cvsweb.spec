@@ -5,7 +5,7 @@ Release:	10
 Epoch:		1
 License:	BSD
 Group:		System/Servers
-URL:		http://www.FreeBSD.org/projects/cvsweb.html
+URL:		https://www.FreeBSD.org/projects/cvsweb.html
 Source0:	http://people.freebsd.org/~scop/cvsweb/%{name}-%{version}.tar.bz2
 Patch0:		cvsweb-3.0.5.config.patch
 Requires:	cvs
